@@ -1,0 +1,87 @@
+<div class="card" id="addNew" style="display: none;">
+    <div class="card-body" >
+        <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" novalidate>
+            <h4 class="container font-weight-bold text-center" id="addNewBlog">ADD New Blog</h4>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+                    <!-- <form class="form-floating">
+                        <input type="text" class="form-control" id="blogTitle" formControlName="blogTitle" placeholder="Blog Title" required mdbInput>
+                        <label for="blogTitle">Blog Title</label>
+                    </form> -->
+                    <label for="blogTitle">Blog Title</label>
+                    <input id="blogTitle" type="text" formControlName="blogTitle" class="form-control" placeholder="Blog Title" required >
+                
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-3 mb-3">
+                  <label for="blogContent">Blog Content</label>
+                  <textarea id="blogContent" name="w3review" rows="3" cols="50" formControlName="blogContent" class="form-control" placeholder="Blog Content" required >
+                    </textarea>
+                </div>
+                <!-- <div class="col-lg-3 col-md-4 col-sm-3 mb-3">
+                    <label for="Blog_Content">Blog Content</label>
+                    <input type="text" id="Blog_Content" class="form-control" readonly>
+                    <input hidden type="file" #BrandContentUploader class="form-control" readonly (change)="uploadImage($event)" accept="image/*">
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 mt-3 ">
+                    <button mdbBtn type="button" id="uploadButton" class="btn btn-outline-info ml-n1" outline="true" size="sm" (click)="BrandContentUploader.click();" mdbWavesEffect>
+                        <i class="fa fa-upload mr-2"></i> Upload   
+                    </button>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col">
+                    <div class="float-left" *ngIf="adImage.length>0">
+                        <label class="float-left" class="training-img" for="adImgInput"> <img [src]="adImage" class="img-responsive float-left" style="height: 20vh;width: 100%;"> </label>
+                        <input hidden type="file" id="adImgInput" accept="image/*" readonly>
+                        <br> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Create</button>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                  <button type="button" class="btn btn-primary" (click)="updateBlogData()" [disabled]="!blogForm.valid">Update</button>
+              </div>
+            </div>
+        
+        </form>
+    </div>
+</div>
+
+<div class="row m-3 ml-5 mr-5">
+    <div class="col-mb-5 w-100">
+      <div id="skillData">
+        <button type="button" class="float-right btn btn-primary mb-3" id="newProductSubCatBtn" (click)="openNewAddBlog()"><i class="fa fa-plus"></i> ADD Blog </button>
+        <div class="table-responsive">
+          <table class="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Blog Title</th>
+                <th scope="col">Blog Content</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Edit</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of blogData">
+                <td scope="col">{{item.blogId}}</td>
+                <td scope="col">{{item.title}}</td>
+                <td scope="col">{{item.blogContent}}</td>
+                <td scope="col">{{item.creationDate.seconds*1000 | date}}</td>
+                <td><i class="fa fa-edit text-primary" (click)="editBlog(item)" style="cursor: pointer;"></i></td>
+                <td><i class="fa fa-trash text-primary" (click)="deleteBlog(item)" style="cursor: pointer;"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,16 @@
+input {
+    border:none;
+    border-bottom: 1px solid #1890ff;
+    padding: 5px 10px;
+    outline: none;
+    border-radius:0px !important;
+
+}
+
+.form-control:focus {
+    box-shadow:none;
+ }
+
+ card {
+    background-color: yellow;
+  }

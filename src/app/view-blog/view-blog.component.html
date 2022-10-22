@@ -1,0 +1,14 @@
+<h4 class="container font-weight-bold text-center" id="addNewBlog" *ngIf="postedBlogData.length==0">No Blog posted <a  routerLink="/create-blog" routerLinkActive="active">Create New Blog</a></h4>
+<div class="container" *ngIf="postedBlogData.length>0">
+    <div class="row" >
+        <ng-container *ngFor="let blog of postedBlogData; let i = index;">
+            <div class=" ml-lg-2 ml-md-2 mb-5" style=" width:300px;" >
+                <div class="card mt-2 mx-0 mb-4 mr-lg-4 mr-md-4 px-2">
+                    <h4 class="text-left font-weight-bold pt-3" >{{blog.title}}</h4>
+                    <div class="imgWidth" *ngIf="blog.imageURL !=null && blog.imageURL.length>0"> <img class="card-img-top w-100 h-100" src="{{blog.imageURL}}" alt="Card image cap"> </div>
+                    <P class="text-left" >{{blog.blogContent}}</P>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

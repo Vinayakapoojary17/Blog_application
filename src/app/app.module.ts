@@ -7,14 +7,18 @@ import { AppComponent } from './app.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { BlogItemsService } from './services/blog-items.service';
+import { ViewBlogComponent } from './view-blog/view-blog.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateBlogComponent, 
+    CreateBlogComponent,
+    ViewBlogComponent, 
   ],
   imports: [
     BrowserModule,
@@ -23,8 +27,11 @@ import { BlogItemsService } from './services/blog-items.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), // imports firebase/app needed for everything
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    AngularFireDatabaseModule,
+
   ],
   providers: [
     BlogItemsService

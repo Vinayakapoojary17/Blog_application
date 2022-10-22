@@ -10,8 +10,6 @@ export class BlogItemsService {
   items:Observable<Item[]> ;
   itemDoc:AngularFirestoreDocument<Item> | undefined;
   constructor( public angularFirestore:AngularFirestore ) { 
-    // this.items = this.angularFirestore.collection<Item>('blog-collection').valueChanges();
-    // this.itemsCollections = this.angularFirestore.collection('blog-collection', ref => ref.orderBy('title','asc'));
     this.itemsCollections = this.angularFirestore.collection('blog-collection');
     this.items = this.itemsCollections.snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
@@ -20,33 +18,36 @@ export class BlogItemsService {
         return data;
       })
     }));
-    console.log(this.items)
   }
 
+  // method to send blog collection item
   getBlogItem(){
     return this.items;
   }
 
+  // method to create firebase blog collection item
   postBlogItem(item:Item){
-    console.log(item);
     this.itemsCollections?.add(item);
   }
 
+// method to delete firebase blog collection item
   removeBlog(item:Item){
     this.itemDoc = this.angularFirestore.doc(`blog-collection/${item.id}`);
     this.itemDoc.delete();
   }
 
+// method to update firebase blog collection item
   updateBlog(item:Item){
     this.itemDoc = this.angularFirestore.doc(`blog-collection/${item.id}`);
     this.itemDoc.update(item);
   }
 }
 
-
+//interface data type foe blog collection
 interface Item{
   id?:string;
   blogContent?:string;
   blogTitle?: string;
   date?:Date;
+  imageUrl:string;
 }

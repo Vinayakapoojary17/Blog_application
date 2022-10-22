@@ -9,8 +9,23 @@ input {
 
 .form-control:focus {
     box-shadow:none;
- }
+}
 
- card {
-    background-color: yellow;
-  }
+.buttons{
+    width: 25%;
+}
+/* CSS for Button buttons next to each other */
+.my-buttons {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+#loadbar{
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

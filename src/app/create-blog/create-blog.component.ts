@@ -181,6 +181,23 @@ export class CreateBlogComponent implements OnInit {
       imageURL:this.imageUrl
     }
     this.blogItemService.updateBlog(data); //sending data to service to update new blog
+    //success message for data update to the collection
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Blog update successfully'
+    })
     this.editBlogData=[];
     this.blogForm.reset();
     this.imageUrl=[];
